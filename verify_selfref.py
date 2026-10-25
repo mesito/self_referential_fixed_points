@@ -324,6 +324,20 @@ for kk in (1, 3, 10):
         lo, hi = (lo, mid) if mid + lg(mid) ** kk > B_U else (mid, hi)
     ok &= abs((lo + hi) / 2 - (B_U - lg(B_U) ** kk)) / B_U < mpf(10) ** -80
 check("mismatched phi = log2 B, c = n^k: B* = B_U - (log2 B_U)^k (k = 1, 3, 10)", ok)
+thr = lg(B_U) / lg(lg(B_U))
+check("mismatched model: threshold log2 B_U / log2 log2 B_U = 37.1", close(thr, "37.1", abs_="0.05"), mp.nstr(thr, 5))
+ratios = {}
+for kk in (36, 37, 38, 100):
+    lo, hi = mpf(1), B_U
+    for _ in range(500):
+        mid = (lo + hi) / 2
+        lo, hi = (lo, mid) if mid + lg(mid) ** kk > B_U else (mid, hi)
+    ratios[kk] = (lo + hi) / 2 / B_U
+check("mismatched model, B*/B_U: 0.998 (k=36), 0.45 (k=37), 1.2e-12 (k=38), 2.1e-90 and log2 B* = 8.35 (k=100)",
+      close(ratios[36], "0.998", abs_="0.0005") and close(ratios[37], "0.45", abs_="0.005")
+      and sig(ratios[38], 2) == "1.2e-12" and sig(ratios[100], 2) == "2.1e-90"
+      and close(lg(ratios[100] * B_U), "8.35", abs_="0.005"),
+      ", ".join(f"k={k}: {sig(v,3)}" for k, v in ratios.items()))
 check("EXPTIME-type 2^(n^2): n* = sqrt(log2(B_U/2)) = 17.5", close(sqrt(lg(B_U / 2)), "17.5", abs_="0.05"))
 check("doubly exponential 2^(2^n): n* = log2 log2(B_U/2) = 8 (8.25)", close(lg(lg(B_U / 2)), "8.25", abs_="0.005"))
 

@@ -29,7 +29,7 @@ network. Runtime about 30 s. All arithmetic is done at 50 decimal digits; every 
 compared with the precision at which it appears in the paper. The last line must read
 
 ```
-57 checks, 57 PASS, 0 FAIL
+59 checks, 59 PASS, 0 FAIL
 ```
 
 and the exit status is 1 if any check fails.
@@ -115,7 +115,9 @@ PPSZ: 1.30704ⁿ ≤ B_U/2 ⇔ n ≤ 790. Bit-cost model c(n) = m·2ⁿ (m claus
 Corollary 7.2: n*_Q = 2 × 305.234 = 610.47. Section 8.1: matched polynomial sizes (B_U/2)^(1/k) for
 k = 3, 10, 30, 100, 1000 (4.2×10³⁰, 1.5×10⁹, 1156, 8.3, 1.2) and the exponent k ≈ 37 at which the size
 equals 305; the mismatched operator T(B) = B_U − (log₂B)^k has fixed point B_U − (log₂B_U)^k to
-relative precision 10⁻⁸⁰ (k = 1, 3, 10). Section 8.4: 2^(n²) → n* = 17.5; 2^(2ⁿ) → n* = 8.25.
+relative precision 10⁻⁸⁰ for k = 1, 3, 10, i.e. below the threshold log₂B_U/log₂log₂B_U = 37.1, and
+B*/B_U = 0.998, 0.45, 1.2×10⁻¹², 2.1×10⁻⁹⁰ for k = 36, 37, 38, 100 (the approximation fails above the
+threshold). Section 8.4: 2^(n²) → n* = 17.5; 2^(2ⁿ) → n* = 8.25.
 
 ## What is not checked
 
