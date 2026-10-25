@@ -29,7 +29,7 @@ network. Runtime about 30 s. All arithmetic is done at 50 decimal digits; every 
 compared with the precision at which it appears in the paper. The last line must read
 
 ```
-55 checks, 55 PASS, 0 FAIL
+57 checks, 57 PASS, 0 FAIL
 ```
 
 and the exit status is 1 if any check fails.
@@ -91,7 +91,8 @@ those stated in Theorem 4.8 (fixed point 2^(m−1) + r iff r < 2^(m−1); the un
 16, 65 519 and 34 464 budgets respectively; B₀ = 5 has the fixed point 3 and the two-cycle {1, 4}.
 For every B₀ ≤ 4000 and every starting point B: the orbit reaches the fixed point (from
 [2^(i+1), 2^m)) or the two-cycle (from everywhere else, including B₀) within two steps. For B_U:
-m = 306, r/2^m = 0.176, i = 303.
+m = 306, r/2^m = 0.176, i = 303. Corollary 4.9: N_fix = 2^m − 2^(i+1) and N_cyc = r + 2^(i+1) by direct
+count for all B₀ ≤ 3000, and N_fix/B₀ = 0.638, N_cyc/B₀ = 0.362 for ⌊B_U⌋.
 
 ### F2 — Section 6.3, range of scenarios and robustness of the discrete fixed point
 n* ranges from 304.0 to 311.3 over E_U ∈ [1.7×10⁶⁹, 2.7×10⁷¹] J; with 1.5·E_U the fractional part is

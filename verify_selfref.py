@@ -247,6 +247,26 @@ ii = ri.bit_length() - 1
 check("B_U: m = 306, r/2^m = 0.176, i = 303: two-cycle between sizes 303 and 306; fixed-point basin sizes 304-305",
       mi == 306 and close(mpf(ri) / mpf(2) ** mi, "0.176", abs_="0.0005") and ii == 303 and ri < (1 << (mi - 1)),
       f"{mi}, {mp.nstr(mpf(ri)/mpf(2)**mi, 4)}, {ii}")
+Nf, Nc = (1 << mi) - (1 << (ii + 1)), ri + (1 << (ii + 1))
+check("Corollary 4.9: N_fix + N_cyc = B0 and N_fix/B0 = 0.638, N_cyc/B0 = 0.362 for floor(B_U)",
+      Nf + Nc == B0i and close(mpf(Nf) / B0i, "0.638", abs_="0.0005") and close(mpf(Nc) / B0i, "0.362", abs_="0.0005"),
+      f"{mp.nstr(mpf(Nf)/B0i, 5)}, {mp.nstr(mpf(Nc)/B0i, 5)}")
+ok = True
+for B0 in range(2, 3001):
+    m = B0.bit_length() - 1
+    r = B0 - (1 << m)
+    if r == 0:
+        continue
+    i = r.bit_length() - 1
+    fp = (1 << (m - 1)) + r if r < (1 << (m - 1)) else None
+    nf = 0
+    for B in range(1, B0 + 1):
+        x = B
+        for _ in range(2):
+            x = Td_int(x, B0)
+        nf += (fp is not None and x == fp)
+    ok &= (nf == (1 << m) - (1 << (i + 1)))
+check("Corollary 4.9: basin sizes by direct count, all B0 <= 3000 that are not powers of two", ok)
 print("G. Section 5 -- facts used in the proofs")
 ok = True
 for _ in range(5000):
