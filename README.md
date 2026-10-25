@@ -29,7 +29,7 @@ network. Runtime about 30 s. All arithmetic is done at 50 decimal digits; every 
 compared with the precision at which it appears in the paper. The last line must read
 
 ```
-50 checks, 50 PASS, 0 FAIL
+55 checks, 55 PASS, 0 FAIL
 ```
 
 and the exit status is 1 if any check fails.
@@ -83,6 +83,15 @@ unique, n*_d = m − 1 and B*_d = B₀ − 2^(m−1); otherwise {B₀ − 2^m, B
 sizes m − 1 and m. The example B₀ = 7 ({log₂7} = 0.807, two-cycle {3, 5}); exactly half of the integers
 in every [2^m, 2^(m+1)) admit a fixed point (m = 1…12); and the referee's table
 B₀ = 4, 5, 8, 11, 16, 23 → B*_d = 2, 3, 4, 7, 8, 15 and B₀ = 6, 7, 12, 15, 24 → none.
+
+### F3 — Theorem 4.8, periodic orbits of the discrete operator (integer budgets)
+For every integer B₀ ∈ [2, 100 000]: the fixed points and two-cycles of T_d on {1, …, B₀} are exactly
+those stated in Theorem 4.8 (fixed point 2^(m−1) + r iff r < 2^(m−1); the unique two-cycle
+{r, B₀ − 2^⌊log₂r⌋} iff r > 0, where m = ⌊log₂B₀⌋ and r = B₀ − 2^m); the three regimes occur for
+16, 65 519 and 34 464 budgets respectively; B₀ = 5 has the fixed point 3 and the two-cycle {1, 4}.
+For every B₀ ≤ 4000 and every starting point B: the orbit reaches the fixed point (from
+[2^(i+1), 2^m)) or the two-cycle (from everywhere else, including B₀) within two steps. For B_U:
+m = 306, r/2^m = 0.176, i = 303.
 
 ### F2 — Section 6.3, range of scenarios and robustness of the discrete fixed point
 n* ranges from 304.0 to 311.3 over E_U ∈ [1.7×10⁶⁹, 2.7×10⁷¹] J; with 1.5·E_U the fractional part is

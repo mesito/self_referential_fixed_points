@@ -176,6 +176,77 @@ check("n* ranges from 304.0 to 311.3 over E_U in [1.7e69, 2.7e71]",
 L15 = lg(mpf("1.5") * B_U)
 check("1.5 E_U: {log2 B_U'} = 0.819 > 0.585, no discrete fixed point",
       close(L15 - floor(L15), "0.819", abs_="0.0005") and L15 - floor(L15) > lg(mpf(3) / 2))
+print("F3. Theorem 4.8 -- periodic orbits of the discrete operator (integer budgets)")
+
+
+def Td_int(B, B0):
+    return B0 - (1 << (B.bit_length() - 1))
+
+
+cnt = {"fp_only": 0, "both": 0, "cyc_only": 0}
+bad = 0
+for B0 in range(2, 100001):
+    m = B0.bit_length() - 1
+    r = B0 - (1 << m)
+    cands = {B0 - (1 << k) for k in range(m + 1)} | {B0}   # only image points can be periodic
+    cands = {x for x in cands if 1 <= x <= B0}
+    fps = sorted(x for x in cands if Td_int(x, B0) == x)
+    cyc = set()
+    for a in cands:
+        b = Td_int(a, B0)
+        if 1 <= b <= B0 and b != a and Td_int(b, B0) == a:
+            cyc.add(frozenset((a, b)))
+    pfp = [(1 << (m - 1)) + r] if r < (1 << (m - 1)) else []
+    pcyc = {frozenset((r, B0 - (1 << (r.bit_length() - 1))))} if r > 0 else set()
+    if fps != pfp or cyc != pcyc:
+        bad += 1
+    if r == 0:
+        cnt["fp_only"] += 1
+    elif pfp:
+        cnt["both"] += 1
+    else:
+        cnt["cyc_only"] += 1
+check("fixed points and two-cycles as stated in Theorem 4.8, all integer B0 in [2, 100000]", bad == 0)
+check("regimes: 16 power-of-two budgets, 65519 with both, 34464 with a two-cycle only",
+      cnt == {"fp_only": 16, "both": 65519, "cyc_only": 34464}, str(cnt))
+check("B0 = 5: fixed point 3 and two-cycle {1, 4}", Td_int(3, 5) == 3 and Td_int(1, 5) == 4 and Td_int(4, 5) == 1)
+bb = 0
+for B0 in range(2, 4001):
+    m = B0.bit_length() - 1
+    r = B0 - (1 << m)
+    if r == 0:
+        fp = 1 << (m - 1)
+        for B in range(1, B0):
+            x, st = B, 0
+            while x != fp and st < 3:
+                x, st = Td_int(x, B0), st + 1
+            bb += (x != fp or st > 2)
+        continue
+    i = r.bit_length() - 1
+    fp = (1 << (m - 1)) + r if r < (1 << (m - 1)) else None
+    cyc = {r, B0 - (1 << i)}
+    for B in range(1, B0 + 1):
+        k = B.bit_length() - 1
+        x, st = B, 0
+        if i < k <= m - 1:
+            if fp is None:
+                bb += 1
+                continue
+            while x != fp and st < 3:
+                x, st = Td_int(x, B0), st + 1
+            bb += (x != fp or st > 2)
+        else:
+            while x not in cyc and st < 3:
+                x, st = Td_int(x, B0), st + 1
+            bb += (x not in cyc or st > 2)
+check("Theorem 4.8(c): basins and 'at most two steps', all B for all B0 <= 4000", bb == 0)
+B0i = int(floor(B_U))
+mi = B0i.bit_length() - 1
+ri = B0i - (1 << mi)
+ii = ri.bit_length() - 1
+check("B_U: m = 306, r/2^m = 0.176, i = 303: two-cycle between sizes 303 and 306; fixed-point basin sizes 304-305",
+      mi == 306 and close(mpf(ri) / mpf(2) ** mi, "0.176", abs_="0.0005") and ii == 303 and ri < (1 << (mi - 1)),
+      f"{mi}, {mp.nstr(mpf(ri)/mpf(2)**mi, 4)}, {ii}")
 print("G. Section 5 -- facts used in the proofs")
 ok = True
 for _ in range(5000):

@@ -36,6 +36,12 @@ F. Theorem 4.7 -- discrete model
 F2. Section 6.3 -- range of scenarios and robustness of the discrete fixed point
 [PASS] n* ranges from 304.0 to 311.3 over E_U in [1.7e69, 2.7e71]   (304.0, 311.33)
 [PASS] 1.5 E_U: {log2 B_U'} = 0.819 > 0.585, no discrete fixed point
+F3. Theorem 4.8 -- periodic orbits of the discrete operator (integer budgets)
+[PASS] fixed points and two-cycles as stated in Theorem 4.8, all integer B0 in [2, 100000]
+[PASS] regimes: 16 power-of-two budgets, 65519 with both, 34464 with a two-cycle only   ({'fp_only': 16, 'both': 65519, 'cyc_only': 34464})
+[PASS] B0 = 5: fixed point 3 and two-cycle {1, 4}
+[PASS] Theorem 4.8(c): basins and 'at most two steps', all B for all B0 <= 4000
+[PASS] B_U: m = 306, r/2^m = 0.176, i = 303: two-cycle between sizes 303 and 306; fixed-point basin sizes 304-305   (306, 0.1763, 303)
 G. Section 5 -- facts used in the proofs
 [PASS] 2^floor(log2 B) <= B < 2^(floor(log2 B)+1) for B >= 1
 [PASS] n_G = floor(log2 B0) + 1 gives 2^n_G > B0 (B0 = 2, 7, 1000, B_U)
@@ -58,4 +64,4 @@ I. Sections 7-8 -- quantum and other cost functions
 [PASS] mismatched phi = log2 B, c = n^k: B* = B_U - (log2 B_U)^k (k = 1, 3, 10)
 [PASS] EXPTIME-type 2^(n^2): n* = sqrt(log2(B_U/2)) = 17.5
 [PASS] doubly exponential 2^(2^n): n* = log2 log2(B_U/2) = 8 (8.25)
-50 checks, 50 PASS, 0 FAIL
+55 checks, 55 PASS, 0 FAIL
