@@ -1,0 +1,60 @@
+A. Section 6.1 -- cosmological parameters
+[PASS] V = (4/3) pi R_H^3 = 3.6e80 m^3   (3.568e80)
+[PASS] rho_c = 3 H0^2/(8 pi G) = 8.53e-27 kg/m^3   (8.533e-27)
+[PASS] rho_c c^2 (c t_U)^3 = 1.7e69 J   (1.701e69)
+[PASS] rho_c c^2 (4pi/3)(c t_U)^3 = 7.1e69 J   (7.124e69)
+[PASS] E_U = 4e69 J lies between the two
+[PASS] rho_c c^2 V = 2.7e71 J   (2.736e71)
+[PASS] ... which raises n* by log2(2.7e71/4e69) = 6.1   (6.096)
+B. Section 6.2 -- fixed point at CMB temperature
+[PASS] eps_CMB = k_B T ln 2 = 2.608e-23 J   (2.60828e-23)
+[PASS] B_U = 1.534e92   (1.53358e92)
+[PASS] log2 B_U = 306.234   (306.234284)
+[PASS] n* = log2 B_U - 1 = 305.234 (abstract: 305.23)
+[PASS] {log2 B_U} = 0.234 < log2(3/2) = 0.585: discrete fixed point exists
+[PASS] n*_d = 305, B*_d = B_U - 2^305 = 0.575 B_U
+C. Table 1 and Section 6.3 -- thermal regimes and sensitivity
+[PASS] T = 300 K: eps = 2.87e-21, B_U = 1.39e90, n* ~ 298   (2.871e-21, 1.393e90, 298.452)
+[PASS] T = 77 K: eps = 7.37e-22, B_U = 5.43e90, n* ~ 300   (7.369e-22, 5.428e90, 300.414)
+[PASS] T = 4 K: eps = 3.83e-23, B_U = 1.04e92, n* ~ 305   (3.828e-23, 1.045e92, 304.681)
+[PASS] T = 2.7255 K: eps = 2.61e-23, B_U = 1.53e92, n* ~ 305   (2.608e-23, 1.534e92, 305.234)
+[PASS] T = 0.01 K: eps = 9.57e-26, B_U = 4.18e94, n* ~ 313   (9.57e-26, 4.18e94, 313.325)
+[PASS] d n*/d ln E_U = 1/ln 2 = 1.443
+[PASS] one order of magnitude moves n* by log2 10 = 3.32
+D. Theorem 4.3 -- stability
+[PASS] delta = -1 + 0.1 B/B0: delta' > 0 but sup |T'| <= 2^-0.9 (1 + 0.1 ln 2) < 0.58   (0.57303)
+[PASS] ... and its fixed point is attracting
+[PASS] sufficient conditions of Theorem 4.3(b) (20000 random cases)
+E. Proposition 4.6 -- power-law consumption
+[PASS] T'(B*) = -alpha(B0-B*)/B*, attracting iff B* > alpha B0/(1+alpha) (3000 cases)
+F. Theorem 4.7 -- discrete model
+[PASS] fixed point iff B0 < 3*2^(m-1), unique, n*_d = m-1 (brute force, 5998 budgets)
+[PASS] otherwise {B0 - 2^m, B0 - 2^(m-1)} is a two-cycle with sizes m-1, m
+[PASS] B0 = 7: no fixed point, {log2 7} = 0.807, two-cycle {3, 5}
+[PASS] exactly half of the integers in [2^m, 2^(m+1)) admit a fixed point (m = 1..12)
+[PASS] critic's table: B0 = 4,5,8,11,16,23 -> B*_d = 2,3,4,7,8,15; 6,7,12,15,24 -> none
+F2. Section 6.3 -- range of scenarios and robustness of the discrete fixed point
+[PASS] n* ranges from 304.0 to 311.3 over E_U in [1.7e69, 2.7e71]   (304.0, 311.33)
+[PASS] 1.5 E_U: {log2 B_U'} = 0.819 > 0.585, no discrete fixed point
+G. Section 5 -- facts used in the proofs
+[PASS] 2^floor(log2 B) <= B < 2^(floor(log2 B)+1) for B >= 1
+[PASS] n_G = floor(log2 B0) + 1 gives 2^n_G > B0 (B0 = 2, 7, 1000, B_U)
+[PASS] Theorem 5.9: closure phi(T(B)) = phi(B) iff B = B0/2; overshoot/undershoot cases
+H. Sections 6.4-6.5 -- information bounds, reversible computation, PPSZ
+[PASS] l_P = 1.616e-35 m
+[PASS] Bekenstein bound, R = c t_U, E = E_U: 1.5e122 bits   (1.496e122)
+[PASS] holographic bound of the Hubble sphere: of order 1e122 bits   (3.27e122)
+[PASS] both exceed B_U by about thirty orders of magnitude
+[PASS] N_ML = 2 E_U t_U/(pi hbar) = 1.05e121   (1.05e121)
+[PASS] n*_ML = log2 N_ML - 1 = 401   (401.024)
+[PASS] 1.30704^n <= B_U/2  <=>  n <= 790   (790.142)
+I. Sections 7-8 -- quantum and other cost functions
+[PASS] n*_Q = 2 x 305.234 = 610.47
+[PASS] matched n^3: (B_U/2)^(1/3) = 4e30 (4.2e30)
+[PASS] matched n^10: (B_U/2)^(1/10) = 1.5e9
+[PASS] matched n^k, k = 30, 100, 1000: 1156, 8.3, 1.2   (1155.6, 8.3, 1.24)
+[PASS] exponent with n* = 305: k = 37   (36.99)
+[PASS] mismatched phi = log2 B, c = n^k: B* = B_U - (log2 B_U)^k (k = 1, 3, 10)
+[PASS] EXPTIME-type 2^(n^2): n* = sqrt(log2(B_U/2)) = 17.5
+[PASS] doubly exponential 2^(2^n): n* = log2 log2(B_U/2) = 8 (8.25)
+49 checks, 49 PASS, 0 FAIL
