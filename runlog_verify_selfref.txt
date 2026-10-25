@@ -48,6 +48,7 @@ H. Sections 6.4-6.5 -- information bounds, reversible computation, PPSZ
 [PASS] N_ML = 2 E_U t_U/(pi hbar) = 1.05e121   (1.05e121)
 [PASS] n*_ML = log2 N_ML - 1 = 401   (401.024)
 [PASS] 1.30704^n <= B_U/2  <=>  n <= 790   (790.142)
+[PASS] bit-cost model c = m 2^n: n* = log2(B_U/2) - log2 m = 295 (m = 1e3), 285 (m = 1e6)   (295.27, 285.3)
 I. Sections 7-8 -- quantum and other cost functions
 [PASS] n*_Q = 2 x 305.234 = 610.47
 [PASS] matched n^3: (B_U/2)^(1/3) = 4e30 (4.2e30)
@@ -57,4 +58,4 @@ I. Sections 7-8 -- quantum and other cost functions
 [PASS] mismatched phi = log2 B, c = n^k: B* = B_U - (log2 B_U)^k (k = 1, 3, 10)
 [PASS] EXPTIME-type 2^(n^2): n* = sqrt(log2(B_U/2)) = 17.5
 [PASS] doubly exponential 2^(2^n): n* = log2 log2(B_U/2) = 8 (8.25)
-49 checks, 49 PASS, 0 FAIL
+50 checks, 50 PASS, 0 FAIL

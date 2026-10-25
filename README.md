@@ -29,7 +29,7 @@ network. Runtime about 30 s. All arithmetic is done at 50 decimal digits; every 
 compared with the precision at which it appears in the paper. The last line must read
 
 ```
-49 checks, 49 PASS, 0 FAIL
+50 checks, 50 PASS, 0 FAIL
 ```
 
 and the exit status is 1 if any check fails.
@@ -99,7 +99,7 @@ truth value of a SAT instance, which the script does not evaluate.
 ℓ_P = 1.616×10⁻³⁵ m; Bekenstein bound 2πk_B R E/(ħc) with R = c t_U, E = E_U: 1.5×10¹²² bits;
 holographic bound A/(4ℓ_P²) of the Hubble sphere: of order 10¹²² bits; both exceed B_U by about
 thirty orders of magnitude. Margolus–Levitin: N_ML = 2E_U t_U/(πħ) = 1.05×10¹²¹, n*_ML = 401.
-PPSZ: 1.30704ⁿ ≤ B_U/2 ⇔ n ≤ 790.
+PPSZ: 1.30704ⁿ ≤ B_U/2 ⇔ n ≤ 790. Bit-cost model c(n) = m·2ⁿ (m clauses): n* = log₂(B_U/2) − log₂m ≈ 295 for m = 10³ and 285 for m = 10⁶.
 
 ### I — Sections 7 and 8, quantum search and other cost functions
 Corollary 7.2: n*_Q = 2 × 305.234 = 610.47. Section 8.1: matched polynomial sizes (B_U/2)^(1/k) for

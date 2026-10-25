@@ -211,6 +211,9 @@ check("N_ML = 2 E_U t_U/(pi hbar) = 1.05e121", sig(N_ML, 3) == "1.05e121", sig(N
 check("n*_ML = log2 N_ML - 1 = 401", int(floor(lg(N_ML) - 1 + mpf("0.5"))) == 401, mp.nstr(lg(N_ML) - 1, 6))
 n_ppsz = lg(B_U / 2) / lg(mpf("1.30704"))
 check("1.30704^n <= B_U/2  <=>  n <= 790", int(floor(n_ppsz)) == 790, mp.nstr(n_ppsz, 6))
+nm3, nm6 = lg(B_U / 2) - lg(10 ** 3), lg(B_U / 2) - lg(10 ** 6)
+check("bit-cost model c = m 2^n: n* = log2(B_U/2) - log2 m = 295 (m = 1e3), 285 (m = 1e6)",
+      int(floor(nm3 + mpf("0.5"))) == 295 and int(floor(nm6 + mpf("0.5"))) == 285, f"{mp.nstr(nm3,5)}, {mp.nstr(nm6,5)}")
 
 print("I. Sections 7-8 -- quantum and other cost functions")
 check("n*_Q = 2 x 305.234 = 610.47", close(2 * (lg(B_U) - 1), "610.47", abs_="0.005"))
