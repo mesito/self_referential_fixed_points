@@ -89,9 +89,11 @@ n* ranges from 304.0 to 311.3 over E_U ∈ [1.7×10⁶⁹, 2.7×10⁷¹] J; with
 0.819 > 0.585 and no discrete fixed point exists.
 
 ### G — Section 5, elementary facts used in the proofs
-2^⌊log₂B⌋ ≤ B < 2^(⌊log₂B⌋+1) for B ≥ 1 (Theorem 5.4); n_G = ⌊log₂B₀⌋ + 1 gives 2^n_G > B₀
-(Theorems 5.6, 5.7); and the closure condition of Theorem 5.9, φ(T(B)) = φ(B) ⇔ B = B₀/2, with the
-overshoot (B > B*) and undershoot (B < B*) cases.
+2^⌊log₂B⌋ ≤ B < 2^(⌊log₂B⌋+1) for B ≥ 1 (Theorem 5.4); n_G = ⌊log₂B₀⌋ + 1 gives 2^n_G > B₀, i.e.
+the instance of size n_G is infeasible, ¬□_B Π_x, for every B ≤ B₀ (Theorems 5.6, 5.7); and the closure
+condition of Theorem 5.9, φ(T(B)) = φ(B) ⇔ B = B₀/2, with the overshoot (B > B*) and undershoot
+(B < B*) cases. The provability predicate ⊩_B of Definition 5.1 is not computed: ⊩_B ψ_x requires the
+truth value of a SAT instance, which the script does not evaluate.
 
 ### H — Sections 6.4–6.5, information bounds, reversible computation, faster algorithms
 ℓ_P = 1.616×10⁻³⁵ m; Bekenstein bound 2πk_B R E/(ħc) with R = c t_U, E = E_U: 1.5×10¹²² bits;
